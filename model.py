@@ -31,11 +31,11 @@ def vgg_based_model(input_shape, n_categories, fulltraining = False):
     x=noise.GaussianNoise(0.1)(Input(shape=input_shape))
     x=base_model.output
     x=GlobalAveragePooling2D()(x)
-    x=Dense(1024)(x)
+    x=Dense(1024, kernel_regularizer=regularizers.l2(0.01), activity_regularizer=regularizers.l1(0.01))(x)
     x=BatchNormalization()(x)
     x=Activation("relu")(x)
     x=Dropout(0.5)(x)
-    x=Dense(1024)(x)
+    x=Dense(1024,kernel_regularizer=regularizers.l2(0.01), activity_regularizer=regularizers.l1(0.01))(x)
     x=BatchNormalization()(x)
     x=Activation("relu")(x)
     x=Dropout(0.5)(x)
