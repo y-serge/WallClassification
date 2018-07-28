@@ -29,7 +29,7 @@ def vgg_based_model(input_shape, n_categories, fulltraining = False):
 
     #add new layers instead of FC networks
     x=base_model.output
-		x=noise.GaussianNoise(0.1)
+    x=noise.GaussianNoise(0.1)
     x=GlobalAveragePooling2D()(x)
     x=Dense(1024)(x)
     x=BatchNormalization()(x)
