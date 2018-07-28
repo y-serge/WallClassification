@@ -5,7 +5,7 @@ vgg16をベースにした転移学習モデルとなっている。
 from keras.models import Model,Sequential
 import tensorflow as tf
 from keras.layers.convolutional import Conv2D
-from keras.layers import Activation, Dense, GlobalAveragePooling2D, Input, InputLayer, Lambda, Dropout, BatchNormalization
+from keras.layers import noise, Activation, Dense, GlobalAveragePooling2D, Input, InputLayer, Lambda, Dropout, BatchNormalization
 from keras.backend import sigmoid
 from keras.applications.vgg16 import VGG16, preprocess_input
 from keras.preprocessing.image import ImageDataGenerator
@@ -29,7 +29,7 @@ def vgg_based_model(input_shape, n_categories, fulltraining = False):
 
     #add new layers instead of FC networks
     x=base_model.output
-    x=noise.GaussianNoise(0.1)
+    x=GaussianNoise(0.1)
     x=GlobalAveragePooling2D()(x)
     x=Dense(1024)(x)
     x=BatchNormalization()(x)
