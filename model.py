@@ -70,8 +70,9 @@ if __name__ == "__main__":
         width_shift_range=0.02,
         shear_range=0.05,
         zoom_range=0.05,
-        #rotation_range=5,
-        rotation_range=0,
+        rotation_range=5,
+        #rotation_range=0,
+				zca_whitening=True
         horizontal_flip=True,
         )
     train_generator=train_datagen.flow_from_directory(
